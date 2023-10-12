@@ -8,7 +8,6 @@ class Counter extends StatefulWidget {
   State<Counter> createState() => _CounterState();
 }
 
-
 class _CounterState extends State<Counter> {
   int numero = 4;
   @override
@@ -38,6 +37,9 @@ class _CounterState extends State<Counter> {
           FloatingActionButton(onPressed: () {
             setState(() {
               numero -= 1; //Icons.exposute_minus_1
+              if (numero<=0) {
+                numero=0;
+              }
             });
           },
           child: const Icon(Icons.exposure_minus_1),
