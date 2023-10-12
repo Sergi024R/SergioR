@@ -8,11 +8,11 @@ class Counter extends StatefulWidget {
   State<Counter> createState() => _CounterState();
 }
 
+
 class _CounterState extends State<Counter> {
   int numero = 4;
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       body: Center(
         child: Column(
@@ -32,8 +32,25 @@ class _CounterState extends State<Counter> {
           ],
         ),
       ),
-      floatingActionButton: const FloatingActionButton(
-          onPressed: null, child: Icon(Icons.plus_one)),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(onPressed: () {
+            setState(() {
+              numero -= 1; //Icons.exposute_minus_1
+            });
+          },
+          child: const Icon(Icons.exposure_minus_1),
+          ), const SizedBox(height: 18,),
+
+           FloatingActionButton(onPressed: () {
+            setState(() {
+              numero += 1; //Icons.exposute_max_1
+            });
+          },
+          child: const Icon(Icons.plus_one))
+        ],
+      ),
     );
   }
 }
