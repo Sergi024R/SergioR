@@ -7,9 +7,9 @@ class Counter extends StatefulWidget {
   @override
   State<Counter> createState() => _CounterState();
 }
-
 class _CounterState extends State<Counter> {
   int numero = 4;
+  String texto = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,9 +22,9 @@ class _CounterState extends State<Counter> {
               style:
                   const TextStyle(fontSize: 130, fontWeight: FontWeight.w100),
             ),
-            const Text(
-              'Clicks',
-              style: TextStyle(
+            Text(
+              texto,
+              style: const TextStyle(
                 fontSize: 70,
               ),
             )
@@ -34,23 +34,53 @@ class _CounterState extends State<Counter> {
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          FloatingActionButton(onPressed: () {
-            setState(() {
-              numero -= 1; //Icons.exposute_minus_1
-              if (numero<=0) {
-                numero=0;
-              }
-            });
-          },
-          child: const Icon(Icons.exposure_minus_1),
-          ), const SizedBox(height: 18,),
-
-           FloatingActionButton(onPressed: () {
-            setState(() {
-              numero += 1; //Icons.exposute_max_1
-            });
-          },
-          child: const Icon(Icons.plus_one))
+          FloatingActionButton(
+            onPressed: () {
+              setState(() {
+                numero -= 1; //Icons.exposute_minus_1
+                if (numero < 0) {
+                  numero = 0;
+                }
+                if (numero > 1) {
+                  texto="Clicks";
+                }if(numero==1) {
+                  texto="Click";
+                }
+              });
+            },
+            child: const Icon(Icons.exposure_minus_1),
+          ),
+          const SizedBox(
+            height: 18,
+          ),
+          FloatingActionButton(
+              onPressed: () {
+                setState(() {
+                  numero += 1; //Icons.exposute_max_1
+                  if (numero > 1) {
+                  texto="Clicks";
+                }if(numero==1) {
+                  texto="Click";
+                }
+                });
+              },
+              child: const Icon(Icons.plus_one)),
+          const SizedBox(
+            height: 18,
+          ),
+          FloatingActionButton(
+            onPressed: () {
+              setState(() {
+                numero = 0;
+                if (numero > 1) {
+                  texto="Clicks";
+                }if(numero==1 || numero==0) {
+                  texto="Click";
+                }
+              });
+            },
+            child: const Icon(Icons.refresh_rounded),
+          )
         ],
       ),
     );
