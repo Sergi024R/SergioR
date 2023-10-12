@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:guillermo_grellas/presentation/custom_button.dart';
 
 class Counter extends StatefulWidget {
-
   const Counter({super.key});
 
   @override
   State<Counter> createState() => _CounterState();
 }
+
 class _CounterState extends State<Counter> {
-  int numero = 4;
+  int numero = 0;
   String texto = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: const Text("Sergio Reyes"),centerTitle: true,),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -34,7 +36,11 @@ class _CounterState extends State<Counter> {
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          FloatingActionButton(
+          const SizedBox(
+            height: 18,
+          ),
+          CustomButton(
+            icon: Icons.exposure_minus_1,
             onPressed: () {
               setState(() {
                 numero -= 1; //Icons.exposute_minus_1
@@ -42,45 +48,48 @@ class _CounterState extends State<Counter> {
                   numero = 0;
                 }
                 if (numero > 1) {
-                  texto="Clicks";
-                }if(numero==1) {
-                  texto="Click";
+                  texto = "Clicks";
+                }
+                if (numero == 1) {
+                  texto = "Click";
                 }
               });
             },
-            child: const Icon(Icons.exposure_minus_1),
           ),
           const SizedBox(
             height: 18,
           ),
-          FloatingActionButton(
-              onPressed: () {
-                setState(() {
-                  numero += 1; //Icons.exposute_max_1
-                  if (numero > 1) {
-                  texto="Clicks";
-                }if(numero==1) {
-                  texto="Click";
+          CustomButton(
+            icon: Icons.plus_one,
+            onPressed: () {
+              setState(() {
+                numero += 1; //Icons.exposute_max_1
+                if (numero > 1) {
+                  texto = "Clicks";
                 }
-                });
-              },
-              child: const Icon(Icons.plus_one)),
+                if (numero == 1) {
+                  texto = "Click";
+                }
+              });
+            },
+          ),
           const SizedBox(
             height: 18,
           ),
-          FloatingActionButton(
+          CustomButton(
+            icon: Icons.refresh_rounded,
             onPressed: () {
               setState(() {
                 numero = 0;
                 if (numero > 1) {
-                  texto="Clicks";
-                }if(numero==1 || numero==0) {
-                  texto="Click";
+                  texto = "Clicks";
+                }
+                if (numero == 1 || numero == 0) {
+                  texto = "Click";
                 }
               });
             },
-            child: const Icon(Icons.refresh_rounded),
-          )
+          ),
         ],
       ),
     );
